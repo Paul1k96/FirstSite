@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html >
-    <head>
-        <title>Paul1k blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Paul1k blog</a> </h1>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+                <div class="date">
+                    {{ post.published_date }}
+                </div>
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}
-            </div>>
-        {% endfor %}
-<!--            <p>published: 30.08.2022, 15:30</p>-->
-<!--            <h2><a href="">My first post</a></h2>-->
-<!--            <p>Съешь ещё этих мягких французских булок, да выпей чаю</p>-->
-
-
-
-<!--            <p>published: 30.08.2022, 15:30</p>-->
-<!--            <h2><a href="">My second post</a></h2>-->
-<!--            <p>— А может, его вообще нет? — сказал Роман голосом кинопровокатора.</p>-->
-<!--            <p>— Чего?</p>-->
-<!--            <p>— Счастья.</p>-->
-<!--            <p>Магнус Федорович сразу обиделся.</p>-->
-<!--            <p>— Как же его нет, — с достоинством сказал он, — когда я сам его неоднократно испытывал?</p>-->
-
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
